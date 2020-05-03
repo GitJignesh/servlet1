@@ -23,15 +23,16 @@
 
         <ul>
             <c:forEach var="listReading" items="${listReading}">
-                  <li><c:out value="${listReading.strSchool}" /></li>
+                  <li>Device Id: <c:out value="${listReading.intDevice}" />&nbsp;
+                      School:<c:out value="${listReading.strSchool}" /></li>
              </c:forEach>
         </ul>
         <br>
-        <ul>
+<!--         <ul>
             <c:forEach var="strList" items="${strList}">
                   <li><c:out value="${strList}" /></li>
              </c:forEach>
-        </ul>
+        </ul> -->
         
         
 <!--         <br> Test Object
