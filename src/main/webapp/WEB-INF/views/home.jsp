@@ -22,10 +22,17 @@
 
 
         <ul>
+            <c:forEach var="listReading" items="${listReading}">
+                  <li><c:out value="${listReading.strSchool}" /></li>
+             </c:forEach>
+        </ul>
+        <br>
+        <ul>
             <c:forEach var="strList" items="${strList}">
                   <li><c:out value="${strList}" /></li>
              </c:forEach>
         </ul>
+        
         
 <!--         <br> Test Object
         <br>
