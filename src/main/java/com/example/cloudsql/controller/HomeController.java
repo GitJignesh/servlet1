@@ -130,6 +130,18 @@ public class HomeController {
 //         return listReading;
      
      
+        List<String> strList = new ArrayList<String>();
+        strList.add("List Item A");
+        strList.add("List Item B");
+        strList.add("List Item C");
+        strList.add("List Item D");
+        strList.add("List Item 1");
+        strList.add("List Item 2");
+        strList.add("List Item 3");
+
+        model.addObject("strList", strList);
+     
+     
         model.addObject("listReading", listReading);
         model.addObject("test", "test");
         model.setViewName("home");
