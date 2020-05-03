@@ -130,7 +130,7 @@ public class HomeController {
 //         return listReading;
      
      
-//         model.addObject("listReading", listReading);
+        model.addObject("listReading", listReading);
         model.setViewName("home");
         return model;
     }
