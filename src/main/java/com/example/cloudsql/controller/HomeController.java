@@ -136,7 +136,7 @@ public class HomeController {
     }
  
     @RequestMapping(value="/home", method = RequestMethod.GET)
-    public ModelAndView listReading(ModelAndView model) {
+    public ModelAndView listReadinghome(ModelAndView model) {
         model.setViewName("home");
         return model;
     }
