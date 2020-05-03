@@ -19,10 +19,10 @@
         <div align="center">
             Hello From servlet1 Home Page.
         </div>
-        
+
 <!--         <c:if test="${not empty movies}"> -->
-            <c:forEach items="${listReading}" var="Reading">   
-                ${Reading.strSchool}<br />
+            <c:forEach items="${strList}" var="strList">   
+                ${strList}<br />
             </c:forEach> 
         <ul>
             <c:forEach var="listValue" items="${listReading}">
