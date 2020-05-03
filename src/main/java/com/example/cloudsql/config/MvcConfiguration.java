@@ -12,41 +12,41 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import com.mycompany.earthleaderproject.dao.ReadingDAO;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
-import java.sql.SQLException;
-import javax.servlet.ServletException;
-
+// import com.example.cloudsql.model.ReadingDAO;
 // import com.zaxxer.hikari.HikariConfig;
 // import com.zaxxer.hikari.HikariDataSource;
-// import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-// import java.sql.SQLException;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import javax.sql.DataSource;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Nullable;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
+// import java.sql.SQLException;
+// import javax.servlet.ServletException;
+
+// // import com.zaxxer.hikari.HikariConfig;
+// // import com.zaxxer.hikari.HikariDataSource;
+// // import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+// import java.sql.Connection;
+// import java.sql.PreparedStatement;
+// // import java.sql.SQLException;
+// import javax.servlet.ServletContext;
+// import javax.servlet.ServletContextEvent;
+// import javax.servlet.ServletContextListener;
+// import javax.servlet.annotation.WebListener;
+// import javax.sql.DataSource;
+
+// import java.io.IOException;
+// import java.sql.ResultSet;
+// import java.sql.Timestamp;
+// import java.util.ArrayList;
+// import java.util.Date;
+// import java.util.List;
+// import java.util.Locale;
+// import java.util.logging.Level;
+// import java.util.logging.Logger;
+// import javax.annotation.Nullable;
+// import javax.servlet.ServletException;
+// import javax.servlet.annotation.WebServlet;
+// import javax.servlet.http.HttpServlet;
+// import javax.servlet.http.HttpServletRequest;
+// import javax.servlet.http.HttpServletResponse;
+// import javax.sql.DataSource;
 
 // import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 // import org.springframework.boot.SpringApplication;
@@ -62,9 +62,9 @@ import javax.sql.DataSource;
 // @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
     
-    // Added on 28-04-2020
-    public MvcConfiguration(){
-    }
+//     // Added on 28-04-2020
+//     public MvcConfiguration(){
+//     }
  
     @Bean
     public ViewResolver getViewResolver(){
@@ -81,10 +81,10 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
     
 
  
-    @Bean
-    public ReadingDAO getReadingDAO() { //throws SQLException {
-        return new ReadingDAOImpl(getDataSource());
-    }
+//     @Bean
+//     public ReadingDAO getReadingDAO() { //throws SQLException {
+//         return new ReadingDAOImpl(getDataSource());
+//     }
 
     
 //    //JSon from javascript can't pass '{', '}' in URL as data.
