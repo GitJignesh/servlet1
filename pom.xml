@@ -59,9 +59,8 @@
        <artifactId>slf4j-simple</artifactId>
        <version>1.7.30</version>
    </dependency>
-  </dependencies>
-  
-<!--   Custom dependencies -->
+    
+  <!--   Custom dependencies -->
   <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
   <dependency>
       <groupId>org.springframework</groupId>
@@ -74,8 +73,11 @@
       <artifactId>spring-beans</artifactId>
       <version>5.2.6.RELEASE</version>
   </dependency>
-
-  
+    
+    
+    
+  </dependencies>
+   
 
   <build>
     <plugins>
