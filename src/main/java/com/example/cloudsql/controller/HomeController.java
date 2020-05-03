@@ -86,51 +86,51 @@ public class HomeController {
     public ModelAndView listReading(ModelAndView model) {
         //List<Reading> listReading = readingDAO.list();
      
-        DataSource pool = null;
-        HikariConfig config = new HikariConfig();
+//         DataSource pool = null;
+//         HikariConfig config = new HikariConfig();
      
-// //         config.setDriverClassName("com.mysql.cj.jdbc.Driver"); // org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
-// //         config.setDriverClassName("com.mysql.jdbc.GoogleDriver"); // org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.RuntimeException: Failed to load driver class com.mysql.jdbc.GoogleDriver in either of HikariConfig class loader or Thread context classloader
+// // //         config.setDriverClassName("com.mysql.cj.jdbc.Driver"); // org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+// // //         config.setDriverClassName("com.mysql.jdbc.GoogleDriver"); // org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.RuntimeException: Failed to load driver class com.mysql.jdbc.GoogleDriver in either of HikariConfig class loader or Thread context classloader
+// //         String DB_NAME = "earthleader";
+// //         config.setJdbcUrl(String.format("jdbc:mysql:///%s", DB_NAME));
+// //         config.setUsername("user1");
+// //         config.setPassword("user1");
+// //         config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.socket.factory.connector.j.8");
+// //         String CLOUD_SQL_CONNECTION_NAME = "earthleader-274407:asia-south1:mysql57";
+// //         config.addDataSourceProperty("cloudSqlInstance", CLOUD_SQL_CONNECTION_NAME);
 //         String DB_NAME = "earthleader";
 //         config.setJdbcUrl(String.format("jdbc:mysql:///%s", DB_NAME));
 //         config.setUsername("user1");
 //         config.setPassword("user1");
-//         config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.socket.factory.connector.j.8");
+//         config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.SocketFactory");
 //         String CLOUD_SQL_CONNECTION_NAME = "earthleader-274407:asia-south1:mysql57";
 //         config.addDataSourceProperty("cloudSqlInstance", CLOUD_SQL_CONNECTION_NAME);
-        String DB_NAME = "earthleader";
-        config.setJdbcUrl(String.format("jdbc:mysql:///%s", DB_NAME));
-        config.setUsername("user1");
-        config.setPassword("user1");
-        config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.SocketFactory");
-        String CLOUD_SQL_CONNECTION_NAME = "earthleader-274407:asia-south1:mysql57";
-        config.addDataSourceProperty("cloudSqlInstance", CLOUD_SQL_CONNECTION_NAME);
-        pool = new HikariDataSource(config);
-//         org.springframework.web.util.NestedServletException: Handler processing failed; nested exception is java.lang.NoSuchMethodError: 'void com.google.common.base.Throwables.throwIfUnchecked(java.lang.Throwable)'
-//         at com.google.cloud.sql.core.CloudSqlInstance.getInstanceData(CloudSqlInstance.java:133)
-//         at com.google.cloud.sql.core.CloudSqlInstance.createSslSocket(CloudSqlInstance.java:143)
+//         pool = new HikariDataSource(config);
+// //         org.springframework.web.util.NestedServletException: Handler processing failed; nested exception is java.lang.NoSuchMethodError: 'void com.google.common.base.Throwables.throwIfUnchecked(java.lang.Throwable)'
+// //         at com.google.cloud.sql.core.CloudSqlInstance.getInstanceData(CloudSqlInstance.java:133)
+// //         at com.google.cloud.sql.core.CloudSqlInstance.createSslSocket(CloudSqlInstance.java:143)
      
-//         DataSource pool = tempDataSource;
-           List<Reading> listReading = new ArrayList<>();
-           try (Connection conn = pool.getConnection()) {
-            String stmt1 = "SELECT * FROM reading";
-            try (PreparedStatement voteStmt = conn.prepareStatement(stmt1); ) {
-              // Execute the statement
-              ResultSet voteResults = voteStmt.executeQuery();
-              // Convert a ResultSet into Vote objects
-              while (voteResults.next()) {
-   //              String candidate = voteResults.getString(1);
-   //              Timestamp timeCast = voteResults.getTimestamp(2);
-                String strSchool = voteResults.getString("School");
-                int intDevice = voteResults.getInt("Device");
-                listReading.add(new Reading(strSchool, intDevice));
-              }
-            }
-          } catch (SQLException ex) {}
-//         return listReading;
+// //         DataSource pool = tempDataSource;
+//            List<Reading> listReading = new ArrayList<>();
+//            try (Connection conn = pool.getConnection()) {
+//             String stmt1 = "SELECT * FROM reading";
+//             try (PreparedStatement voteStmt = conn.prepareStatement(stmt1); ) {
+//               // Execute the statement
+//               ResultSet voteResults = voteStmt.executeQuery();
+//               // Convert a ResultSet into Vote objects
+//               while (voteResults.next()) {
+//    //              String candidate = voteResults.getString(1);
+//    //              Timestamp timeCast = voteResults.getTimestamp(2);
+//                 String strSchool = voteResults.getString("School");
+//                 int intDevice = voteResults.getInt("Device");
+//                 listReading.add(new Reading(strSchool, intDevice));
+//               }
+//             }
+//           } catch (SQLException ex) {}
+// //         return listReading;
      
      
-        model.addObject("listReading", listReading);
+//         model.addObject("listReading", listReading);
         model.setViewName("home");
         return model;
     }
