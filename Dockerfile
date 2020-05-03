@@ -30,6 +30,6 @@ RUN mvn package -DskipTests
 FROM jetty:9.4-jre8
 
 # Copy the exploded WAR directory from the builder stage to the Jetty web application directory.
-COPY --from=builder /app/target/tabs-vs-spaces-mysql-*/* $JETTY_BASE/webapps/ROOT/
+COPY --from=builder /app/target/servet1-mysql-*/* $JETTY_BASE/webapps/ROOT/
 
 # No CMD needed since Jetty automatically scans, loads, and starts the web app.
