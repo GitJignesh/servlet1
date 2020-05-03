@@ -2,8 +2,8 @@ package com.example.cloudsql.controller;
 
 // import com.example.cloudsql.model.Reading;
 
-import java.io.IOException;
-import java.math.BigInteger;
+// import java.io.IOException;
+// import java.math.BigInteger;
 import java.util.List;
  
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ import com.example.cloudsql.model.Reading;
 import java.sql.SQLException;
 //--------------Additional--------------
 import java.util.ArrayList;
-import java.util.Date;
+// import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,14 +28,14 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import javax.sql.DataSource;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+// import javax.servlet.ServletException;
+// import javax.servlet.annotation.WebServlet;
+// import javax.servlet.http.HttpServlet;
+// import javax.servlet.http.HttpServletRequest;
+// import javax.servlet.http.HttpServletResponse;
+// import javax.servlet.ServletContextEvent;
+// import javax.servlet.ServletContextListener;
+// import javax.servlet.annotation.WebListener;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -44,7 +44,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
+// import java.sql.Timestamp;
 //--------------Additional--------------
 
 
