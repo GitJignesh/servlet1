@@ -121,29 +121,38 @@ public class HomeController {
               while (voteResults.next()) {
    //              String candidate = voteResults.getString(1);
    //              Timestamp timeCast = voteResults.getTimestamp(2);
+               
+                int intRecord_ID = voteResults.getInt("Record_ID");
                 String strSchool = voteResults.getString("School");
                 int intDevice = voteResults.getInt("Device");
-                listReading.add(new Reading(strSchool, intDevice));
+                String strDateTime = voteResults.getString("DateTime");
+                Float fltTemperature = voteResults.getFloat("Temperature");
+                Float fltHumidity = voteResults.getFloat("Humidity");
+                int intPM25 = voteResults.getInt("PM25");
+                int intPM10 = voteResults.getInt("PM10");
+                Float fltCO = voteResults.getFloat("CO");
+                
+                listReading.add(new Reading(intRecord_ID, strSchool, intDevice, strDateTime, fltTemperature, fltHumidity, intPM25, intPM10, fltCO));
               }
             }
           } catch (SQLException ex) {}
 //         return listReading;
      
      
-        List<String> strList = new ArrayList<String>();
-        strList.add("List Item A");
-        strList.add("List Item B");
-        strList.add("List Item C");
-        strList.add("List Item D");
-        strList.add("List Item 1");
-        strList.add("List Item 2");
-        strList.add("List Item 3");
+//         List<String> strList = new ArrayList<String>();
+//         strList.add("List Item A");
+//         strList.add("List Item B");
+//         strList.add("List Item C");
+//         strList.add("List Item D");
+//         strList.add("List Item 1");
+//         strList.add("List Item 2");
+//         strList.add("List Item 3");
 
-        model.addObject("strList", strList);
+//         model.addObject("strList", strList);
      
      
         model.addObject("listReading", listReading);
-        model.addObject("test", "test");
+//         model.addObject("test", "test");
         model.setViewName("home");
         return model;
     }
