@@ -21,16 +21,22 @@
         </div>
         
 <!--         <c:if test="${not empty movies}"> -->
-<!--             <c:forEach items="${listReading}" var="Reading">   
+            <c:forEach items="${listReading}" var="Reading">   
                 ${Reading.strSchool}<br />
-            </c:forEach>  -->
+            </c:forEach> 
+        <ul>
+            <c:forEach var="listValue" items="${listReading}">
+                  <li><c:out value="${listValue.strSchool}" /></li>
+<!--                   <li>${channa}</li> -->
+             </c:forEach>
+        </ul>
 <!--         </c:if> -->
-        <br> Test Object
+<!--         <br> Test Object
         <br>
         ${test}
         <br>
         -----------
-        <br>
+        <br> -->
 <!--         message
         <h1>This is sample error page : <c:out value="${message}"></c:out></h1> -->
     </body>
