@@ -5,6 +5,25 @@
   <groupId>com.example</groupId>
   <artifactId>servlet1</artifactId>
 
+  <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- START Custom Property -->
+<!--         <java.version>1.7</java.version>
+        <spring.version>4.1.5.RELEASE</spring.version>
+        <cglib.version>2.2.2</cglib.version>
+        <mysql.version>8.0.17</mysql.version> -->
+            <!-- START Custom Property Required at AppEngine-->
+<!--             <maven.compiler.target>1.8</maven.compiler.target>
+            <maven.compiler.source>1.8</maven.compiler.source>
+            <appengine.app.version>1</appengine.app.version>
+            <appengine.target.version>1.9.71</appengine.target.version>
+            <appengine-maven-plugin-version>1.3.2</appengine-maven-plugin-version> -->
+            <!-- END Custom Property Required at AppEngine-->
+        <!-- END Custom Property -->
+    </properties>
+  
+  
   <!--
     The parent pom defines common style checks and testing strategies for our samples.
     Removing or replacing it should not affect the execution of the samples in anyway.
