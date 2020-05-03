@@ -82,7 +82,7 @@ public class HomeController {
 //  //  ------------------ Original requestmaping ------------------
  
  
-    @RequestMapping(value="/home", method = RequestMethod.GET)
+    @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView listReading(ModelAndView model) {
         //List<Reading> listReading = readingDAO.list();
      
@@ -131,6 +131,12 @@ public class HomeController {
      
      
 //         model.addObject("listReading", listReading);
+        model.setViewName("home");
+        return model;
+    }
+ 
+    @RequestMapping(value="/home", method = RequestMethod.GET)
+    public ModelAndView listReading(ModelAndView model) {
         model.setViewName("home");
         return model;
     }
