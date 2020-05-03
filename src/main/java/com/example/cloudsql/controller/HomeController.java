@@ -131,6 +131,7 @@ public class HomeController {
      
      
         model.addObject("listReading", listReading);
+        model.addObject("test", "test");
         model.setViewName("home");
         return model;
     }
