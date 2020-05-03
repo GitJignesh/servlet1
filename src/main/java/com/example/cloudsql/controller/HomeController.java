@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-package com.example.cloudsql.model;
+import com.example.cloudsql.model;
 
 import java.sql.SQLException;
 //--------------Additional--------------
