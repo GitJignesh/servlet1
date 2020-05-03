@@ -23,8 +23,16 @@
 
         <ul>
             <c:forEach var="listReading" items="${listReading}">
-                  <li>Device Id: <c:out value="${listReading.intDevice}" />&nbsp;
-                      School:<c:out value="${listReading.strSchool}" /></li>
+                  <li>Record Id: <c:out value="${listReading.intRecord_ID}" />&nbsp;
+                      School:<c:out value="${listReading.strSchool}" />&nbsp;
+                      Device:<c:out value="${listReading.intDevice}" />&nbsp;
+                      DateTime:<c:out value="${listReading.strDateTime}" />&nbsp;
+                      Temperature:<c:out value="${listReading.fltTemperature}" />&nbsp;
+                      Humidity:<c:out value="${listReading.fltHumidity}" />&nbsp;
+                      PM25:<c:out value="${listReading.intPM25}" />&nbsp;
+                      PM10:<c:out value="${listReading.intPM10}" />&nbsp;
+                      CO:<c:out value="${listReading.fltCO}" />&nbsp;
+                  </li>
              </c:forEach>
         </ul>
         <br>
