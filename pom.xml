@@ -1,102 +1,497 @@
-<!--
-  Copyright 2018 Google LLC
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
+    <groupId>com.mycompany</groupId>
+    <artifactId>servlet1</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
-       http://www.apache.org/licenses/LICENSE-2.0
+    <name>servlet1</name>
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<project>
-  <modelVersion>4.0.0</modelVersion>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <groupId>com.example.cloudsql</groupId>
-  <artifactId>tabs-vs-spaces-mysql</artifactId>
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- START Custom Property -->
+        <java.version>1.7</java.version>
+<!--         <spring.version>4.0.3.RELEASE</spring.version> -->
+        <spring.version>4.1.5.RELEASE</spring.version>
+        <cglib.version>2.2.2</cglib.version>
+<!--        <mysql.version>5.1.10</mysql.version>
+Change on 20-Apr-2020-->
+<!-- <mysql.version>8.0.19</mysql.version> 
+Change on 03-May-2020-->
+<mysql.version>8.0.17</mysql.version>
+            <!-- START Custom Property Required at AppEngine-->
+            <maven.compiler.target>1.8</maven.compiler.target>
+            <maven.compiler.source>1.8</maven.compiler.source>
+            <appengine.app.version>1</appengine.app.version>
+            <appengine.target.version>1.9.71</appengine.target.version>
+            <appengine-maven-plugin-version>1.3.2</appengine-maven-plugin-version>
+            <!-- END Custom Property Required at AppEngine-->
+        <!-- END Custom Property -->
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+<!--             <version>4.0.3.RELEASE</version> -->
+<!-- Working  <version>4.0.3.RELEASE</version> -->
+<!--            <version>4.1.5.RELEASE</version> This is not working.-->
+            <version>${spring.version}</version>
+            <type>jar</type>
+        </dependency>
+<!--        <dependency>
+            <groupId>spring</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>1.0.2</version>
+        </dependency>-->
+<!--         <dependency>  commented on 30-04-2020
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency> -->
+        <!-- START Custom Dependency -->
+            <!-- START Custom Dependency Required at AppEngine-->
+            <!-- https://mvnrepository.com/artifact/com.google.cloud.sql/mysql-socket-factory -->
+<!--             <dependency>
+                <groupId>com.google.cloud.sql</groupId>
+                <artifactId>mysql-socket-factory</artifactId>
+                <version>1.0.15</version>
+            </dependency> -->
+            <dependency>
+                <groupId>com.google.cloud.sql</groupId>
+                <artifactId>mysql-socket-factory-connector-j-8</artifactId>
+                <version>1.0.16</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-api-1.0-sdk</artifactId>
+                <version>${appengine.target.version}</version>
+            </dependency>
+<!--             <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
+            </dependency> -->
+            <dependency>
+              <groupId>javax.servlet</groupId>
+              <artifactId>javax.servlet-api</artifactId>
+              <version>3.1.0</version>
+              <type>jar</type>
+              <scope>provided</scope>
+            </dependency>
+            <!-- Test Dependencies -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13-beta-2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.10.19</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-testing</artifactId>
+                <version>${appengine.target.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-api-stubs</artifactId>
+                <version>${appengine.target.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.appengine/gcloud-maven-plugin -->
+            <dependency>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>gcloud-maven-plugin</artifactId>
+                <version>2.0.9.133.v201611104</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>3.4.2</version>
+            </dependency>
+            <!-- END Custom Dependency Required at AppEngine-->
+        <!--MYSQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+<!--         <dependency>
+          <groupId>com.google.cloud.sql</groupId>
+          <artifactId>jdbc-socket-factory-core</artifactId>
+          <version>1.0.17-SNAPSHOT</version>
+        </dependency> -->
+        <!-- https://mvnrepository.com/artifact/com.google.cloud.sql/jdbc-socket-factory-core -->
+        <dependency>
+            <groupId>com.google.cloud.sql</groupId>
+            <artifactId>jdbc-socket-factory-core</artifactId>
+            <version>1.0.16</version>
+        </dependency>
+        <!-- Spring core & mvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+<!--            <version>5.2.4.RELEASE</version> Not working version-->
+            <version>${spring.version}</version>
+        </dependency>
 
-  <!--
-    The parent pom defines common style checks and testing strategies for our samples.
-    Removing or replacing it should not affect the execution of the samples in anyway.
-  -->
-  <parent>
-    <groupId>com.google.cloud.samples</groupId>
-    <artifactId>shared-configuration</artifactId>
-    <version>1.0.17</version>
-  </parent>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
 
-  <properties>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
-  </properties>
+        <!-- CGLib for @Configuration -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>${cglib.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
-  <dependencies>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <type>jar</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.19</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.cloud.sql</groupId>
-      <artifactId>mysql-socket-factory-connector-j-8</artifactId>
-      <version>1.0.16</version>
-    </dependency>
-    <dependency>
-      <groupId>com.zaxxer</groupId>
-      <artifactId>HikariCP</artifactId>
-      <version>3.4.2</version>
-    </dependency>
-    <dependency>
-       <groupId>org.slf4j</groupId>
-       <artifactId>slf4j-api</artifactId>
-       <version>1.7.30</version>
-   </dependency>
-   <dependency>
-       <groupId>org.slf4j</groupId>
-       <artifactId>slf4j-simple</artifactId>
-       <version>1.7.30</version>
-   </dependency>
-  </dependencies>
+        <!-- Servlet Spec -->
+<!--         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency> -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+            <scope>provided</scope>
+        </dependency>
+<!--         <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency> -->
+        <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>jstl</artifactId>
+          <version>1.2</version>
+        </dependency>
+        <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-api</artifactId>
+           <version>1.7.30</version>
+       </dependency>
+       <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-simple</artifactId>
+           <version>1.7.30</version>
+       </dependency>
+<!--        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.1</version>
+        </dependency>-->
+         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure -->
+<!--         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.2.6.RELEASE</version>
+        </dependency> -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
+<!--         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>2.2.6.RELEASE</version>
+        </dependency> -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+<!--         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.6.RELEASE</version>
+        </dependency> -->
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client</artifactId>
+            <version>1.25.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.25.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-storage</artifactId>
+            <version>v1-rev158-1.25.0</version>
+        </dependency>
+<!--         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.156</version>
+        </dependency> -->
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>test</scope>
+        </dependency>
+          <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-jdbc</artifactId>
+             <version>4.1.0.RELEASE</version>
+          </dependency>
+        <!-- END Custom Dependency -->
+    </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.28.v20200408</version>
-        <configuration>
-          <scanIntervalSeconds>1</scanIntervalSeconds>
-        </configuration>
-      </plugin>
-      <!-- Only required for AppEngine Deployments -->
-      <plugin>
-        <groupId>com.google.cloud.tools</groupId>
-        <artifactId>appengine-maven-plugin</artifactId>
-<!--         <version>2.2.0</version> -->
-        <version>1.3.2</version>
-        <configuration>
-          <deploy.projectId>GCLOUD_CONFIG</deploy.projectId>
-          <deploy.version>GCLOUD_CONFIG</deploy.version>
-        </configuration>
-     </plugin>
-    </plugins>
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <silent>true</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>7.0</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- START Custom Plugin Required at AppEngine-->
+<!--             <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>${appengine-maven-plugin-version}</version>
+            </plugin> -->
+<!--             <plugin>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>1.9.9</version>
+            </plugin> -->
+<!--             <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.28.v20200408</version>
+                <configuration>
+                  <scanIntervalSeconds>1</scanIntervalSeconds>
+                </configuration>
+            </plugin> -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.28.v20200408</version>
+                <configuration>
+                  <scanIntervalSeconds>1</scanIntervalSeconds>
+                </configuration>
+              </plugin>
+              <!-- Only required for AppEngine Deployments -->
+              <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                  <version>1.3.2</version>
+<!--                 <version>2.2.0</version> -->
+                <configuration>
+                  <deploy.projectId>GCLOUD_CONFIG</deploy.projectId>
+                  <deploy.version>GCLOUD_CONFIG</deploy.version>
+                </configuration>
+             </plugin>
+            
+<!--             As suggested here. 
+            https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory
+            https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven -->
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.5.3</version>
+            <configuration>
+              <tagNameFormat>@{project.version}</tagNameFormat>
+              <useReleaseProfile>false</useReleaseProfile>
+              <releaseProfiles>release</releaseProfiles>
+            </configuration>
+          </plugin>
+            <plugin>
+              <artifactId>maven-assembly-plugin</artifactId>
+              <configuration>
+                <archive>
+                  <manifest>
+                    <mainClass>fully.qualified.MainClass</mainClass>
+                  </manifest>
+                </archive>
+                <descriptorRefs>
+                  <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+              </configuration>
+            </plugin>
+            <!-- END Custom Plugin Required at AppEngine-->
+        </plugins>
+    </build>
+
+    <!--             As suggested here. Hole <profiles> added.
+            https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory
+            https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven -->
+      <profiles>
+        <profile>
+          <id>release</id>
+          <build>
+            <plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                  <execution>
+                    <id>sign-artifacts</id>
+                    <phase>verify</phase>
+                    <goals>
+                      <goal>sign</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                  <execution>
+                    <id>attach-sources</id>
+                    <goals>
+                      <goal>jar-no-fork</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                  <execution>
+                    <id>attach-javadocs</id>
+                    <goals>
+                      <goal>jar</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
+        <profile>
+          <id>jar-with-dependencies</id>
+          <build>
+            <plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                  <!-- get all project dependencies -->
+                  <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>make-assembly</id>
+                    <!-- bind to the packaging phase -->
+                    <phase>package</phase>
+                    <goals>
+                      <goal>single</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
+        <profile>
+          <id>jar-with-driver-and-dependencies</id>
+            <dependencies>
+                <dependency>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+                  <version>${mysql.version}</version>
+                </dependency>
+            </dependencies>
+          <build>
+            <plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                  <!-- get all project dependencies -->
+                  <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>make-assembly</id>
+                    <!-- bind to the packaging phase -->
+                    <phase>package</phase>
+                    <goals>
+                      <goal>single</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
+      </profiles>
+    
+    
 </project>
