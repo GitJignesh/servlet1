@@ -135,11 +135,11 @@ public class HomeController {
         return model;
     }
  
-    @RequestMapping(value="/home", method = RequestMethod.GET)
-    public ModelAndView listReadinghome(ModelAndView model) {
-        model.setViewName("home");
-        return model;
-    }
+//     @RequestMapping(value="/home", method = RequestMethod.GET)
+//     public ModelAndView listReadinghome(ModelAndView model) {
+//         model.setViewName("home");
+//         return model;
+//     }
 
 //    @RequestMapping(value = "/newReading", method = RequestMethod.GET)
 //    public ModelAndView newReading(ModelAndView model) {
