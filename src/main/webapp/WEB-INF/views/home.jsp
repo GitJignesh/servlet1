@@ -20,17 +20,13 @@
             Hello From servlet1 Home Page.
         </div>
 
-<!--         <c:if test="${not empty movies}"> -->
-            <c:forEach items="${strList}" var="strList">   
-                ${strList}<br />
-            </c:forEach> 
+
         <ul>
-            <c:forEach var="listValue" items="${listReading}">
-                  <li><c:out value="${listValue.strSchool}" /></li>
-<!--                   <li>${channa}</li> -->
+            <c:forEach var="strList" items="${strList}">
+                  <li><c:out value="${strList}" /></li>
              </c:forEach>
         </ul>
-<!--         </c:if> -->
+        
 <!--         <br> Test Object
         <br>
         ${test}
