@@ -53,6 +53,22 @@ public class Reading {
         this.intCount = intCount;
     }
     
+    public Reading(int intRecord_ID, String strSchool, int intDevice
+            , String strDateTime
+            , Float fltTemperature
+            , Float fltHumidity
+            , int intPM25, int intPM10, Float fltCO){
+        this.intRecord_ID = intRecord_ID;
+        this.strSchool = strSchool;
+        this.intDevice = intDevice;
+        this.strDateTime = strDateTime;
+        this.fltTemperature = fltTemperature;
+        this.fltHumidity = fltHumidity;
+        this.intPM25 = intPM25;
+        this.intPM10 = intPM10;
+        this.fltCO = fltCO;
+    }
+    
     public Reading(String strSchool, int intDevice){
         this.strSchool = strSchool;
         this.intDevice = intDevice;
